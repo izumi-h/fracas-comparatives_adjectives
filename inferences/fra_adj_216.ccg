@@ -1,0 +1,2 @@
+(S (S/<S\NP> (NP John)) (S\NP (<S\NP>/N is) (N (N/N a) (N (N/<S/<S\NP>> (<N/<S/<S\NP>>>/N (<S\NP>\D fat) (<<N/<S/<S\NP>>>/N>\<<S\NP>\D> er)) (N politician)) (S/<S\NP> (S/S than) (S/<S\NP> (NP Bill)))))))
+(S (S/<S\NP> (NP John)) (S\NP (<S\NP>/<S\NP> is) (S\NP (<S\NP>/<S/<S\NP>> (<S\NP>\D fat) (<<S\NP>/<S/<S\NP>>>\<<S\NP>\D> er)) (S/<S\NP> (S/S than) (S/<S\NP> (NP Bill))))))

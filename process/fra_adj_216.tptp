@@ -1,0 +1,5 @@
+tff(fat_type, type , fat : $i * $int > $o).
+tff(t1,axiom,![X5]: (![X6]: ((?[D7:$int]: ((fat(X5,D7) & (~fat(X6,D7)))) => ![D8:$int]: ((fat(X6,D8) => fat(X5,D8))))))).
+tff(t2,axiom,![D3:$int]: (![X4]: ((fat(X4,D3) <=> ![D2:$int]: (($lesseq(D2,D3) => fat(X4,D2))))))).
+tff(t3,axiom,((politician(john) & politician(bill)) & ?[D2:$int]: ((fat(john,D2) & (~fat(bill,D2)))))).
+tff(h,conjecture,?[D2:$int]: ((fat(john,D2) & (~fat(bill,D2))))).

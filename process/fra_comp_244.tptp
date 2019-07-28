@@ -1,0 +1,6 @@
+tff(customer_type, type , customer : $i > $o).
+tff(important_type, type , important : $i * $int > $o).
+tff(t1,axiom,![D3:$int]: (![X4]: ((important(X4,D3) <=> ![D2:$int]: (($lesseq(D2,D3) => important(X4,D2))))))).
+tff(t2,axiom,![X5]: (![X6]: ((?[D7:$int]: ((important(X5,D7) & (~important(X6,D7)))) => ![D8:$int]: ((important(X6,D8) => important(X5,D8))))))).
+tff(t3,axiom,?[D3:$int]: ((?[X4]: (((customer(X4) & has(apcom,X4)) & important(X4,D3))) & (~(customer(itel) & important(itel,D3)))))).
+tff(h,conjecture,?[D3:$int]: ((?[X4]: (((customer(X4) & has(apcom,X4)) & important(X4,D3))) & (~(customer(itel) & important(itel,D3)))))).

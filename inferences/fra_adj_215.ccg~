@@ -1,0 +1,3 @@
+(S (S/<S\NP> (<S/<S\NP>>/N all) (N legal_authority)) (S\NP (<S\NP>/N are) (N law_lecturer)))
+(S (S/<S\NP> (<S/<S\NP>>/N all) (N law_lecturer)) (S\NP (<S\NP>/N are) (N legal_authority)))
+(S (S/<S\NP> (<S/<S\NP>>/N all) (N (N/N (<N/N>/<<S\NP>\D> pos5) (<S\NP>\D fat)) (N legal_authority))) (S\NP (<S\NP>/N are) (N (N/N (<N/N>/<<S\NP>\D> pos5) (<S\NP>\D fat)) (N law_lecturer))))

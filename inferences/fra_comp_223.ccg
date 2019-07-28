@@ -1,0 +1,3 @@
+(S (S/<S\NP> (NP (NP/N the) (N PC_6082))) (S\NP (<S\NP>/<S\NP> is) (S\NP (<S\NP>/<S/<S\NP>> (<S\NP>\D fast) (<<S\NP>/<S/<S\NP>>>\<<S\NP>\D> er)) (S/<S\NP> (S/S than) (S/<S\NP> (NP (NP/N the) (N ITEL_XZ))))))))
+(S (S/<S\NP> (NP (NP/N the) (N PC_6082))) (S\NP (<S\NP>/<S\NP> is) (S\NP (<S\NP>/<<S\NP>\D> pos) (<S\NP>\D slow))))
+(S (S/<S\NP> (NP (NP/N the) (N ITEL_XZ))) (S\NP (<S\NP>/<S\NP> is) (S\NP (<S\NP>/<<S\NP>\D> pos) (<S\NP>\D fast))))

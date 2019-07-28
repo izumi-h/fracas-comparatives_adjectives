@@ -1,0 +1,3 @@
+(S (S/<S\NP> (NP ITEL)) (S\NP (<S\NP>/<S/<S\NP>> (<S\NP>/NP sold) (<<S\NP>/<S/<S\NP>>>\<<S\NP>/NP> (D 3000) (<<<S\NP>/<S/<S\NP>>>\<<S\NP>/NP>>\D (<<<<S\NP>/<S/<S\NP>>>\<<S\NP>/NP>>\D>/N more) (N computer)))) (S/<S\NP> (S/S than) (S/<S\NP> (NP APCOM)))))
+(S (S/<S\NP> (NP APCOM)) (S\NP (<S\NP>/NP sold) (NP (NP/N (<NP/N>/<<NP/N>\D> (<<NP/N>/<<NP/N>\D>>/D exactly) (D 2500))) (N computer))))
+(S (S/<S\NP> (NP ITEL)) (S\NP (<S\NP>/NP sold) (NP (NP/N (D 5500)) (NP\<NP/N> (N computer)))))

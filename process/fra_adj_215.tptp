@@ -1,0 +1,11 @@
+tff(np_type, type , np : $i * $int > $int).
+tff(th_type, type , th : $i > $int).
+tff(law_lecturer_type, type , law_lecturer : $i > $o).
+tff(legal_authority_type, type , legal_authority : $i > $o).
+tff(t1,axiom,(![X2]: ((law_lecturer(X2) <=> legal_authority(X2))) => (th(law_lecturer) = th(legal_authority)))).
+tff(t2,axiom,(![X2]: ((law_lecturer(X2) <=> legal_authority(X2))) => (th(law_lecturer) = th(legal_authority)))).
+tff(t3,axiom,(![X2]: ((law_lecturer(X2) <=> legal_authority(X2))) => (th(law_lecturer) = th(legal_authority)))).
+tff(t4,axiom,(![X2]: ((law_lecturer(X2) <=> legal_authority(X2))) => (th(law_lecturer) = th(legal_authority)))).
+tff(t5,axiom,![X2]: ((legal_authority(X2) => law_lecturer(X2)))).
+tff(t6,axiom,![X2]: ((law_lecturer(X2) => legal_authority(X2)))).
+tff(h,conjecture,(~![X2]: (((competent(X2,np(legal_authority,th(legal_authority))) & legal_authority(X2)) => (competent(X2,np(law_lecturer,th(law_lecturer))) & law_lecturer(X2)))))).

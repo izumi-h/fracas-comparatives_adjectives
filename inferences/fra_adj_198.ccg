@@ -1,0 +1,2 @@
+(S (S/<S\NP> (NP John)) (S\NP (<S\NP>/N is) (<S\NP>\<<S\NP>/N> (<<S\NP>\<<S\NP>/N>>/N a) (N (N/N former) (N university_student)))))
+(S (S/<S\NP> (NP John)) (S\NP (<S\NP>/N is) (<S\NP>\<<S\NP>/N> (<<S\NP>\<<S\NP>/N>>/N a) (N university_student))))

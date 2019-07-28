@@ -1,0 +1,2 @@
+(S (S/<S\NP> (<S/<S\NP>>/N every) (N mammal)) (S\NP (<S\NP>/N is) (<S\NP>\<<S\NP>/N> (<<S\NP>\<<S\NP>/N>>/N a) (N animal))))
+(S (S/<S\NP> (<S/<S\NP>>/N every) (N (S\NP four_legged) (N\<S\NP> (N mammal)))) (S\NP (<S\NP>/N is) (<S\NP>\<<S\NP>/N> (<<S\NP>\<<S\NP>/N>>/N a) (N (S\NP four_legged) (N\<S\NP> (N animal))))))

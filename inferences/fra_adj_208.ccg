@@ -1,0 +1,3 @@
+(S (S/<S\NP> (NP Mickey)) (S\NP (<S\NP>/N is) (N (N/N a) (N (N/N (<N/N>/<<S\NP>\D> pos2) (<S\NP>\D small)) (N animal)))))
+(S (S/<S\NP> (NP Dombo)) (S\NP (<S\NP>/N is) (N (N/N a) (N (N/N (<N/N>/<<S\NP>\D> pos2) (<S\NP>\D large)) (N animal)))))
+(S (S/<S\NP> (NP Mickey)) (S\NP (<S\NP>/<S\NP> is) (S\NP (<S\NP>/<S/<S\NP>> (<S\NP>\D small) (<<S\NP>/<S/<S\NP>>>\<<S\NP>\D> er)) (S/<S\NP> (S/S than) (S/<S\NP> (NP Dombo))))))

@@ -1,0 +1,3 @@
+(S (S/<S\NP> Mary) (S\NP (<S\NP>/<S\NP> is) (S\NP (<S\NP>/<<S\NP>\D> pos) (<S\NP>\D short))))
+(S (S/<S\NP> Harry) (S\NP (<S\NP>/<S\NP> is) (S\NP (<S\NP>/<<S\NP>\D> pos) (<S\NP>\D tall))))
+(S (S/<S\NP> Mary) (S\NP (<S\NP>/<S\NP> is) (S\NP (<S\NP>/<S/<S\NP>> (<S\NP>\D tall) (<<S\NP>/<S/<S\NP>>>\<<S\NP>\D> er1)) (S/<S\NP> (S/S than) (S/<S\NP> Harry)))))

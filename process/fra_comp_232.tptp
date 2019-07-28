@@ -1,0 +1,7 @@
+tff(order_type, type , order : $i > $o).
+tff(many_type, type , many : $i * $int > $o).
+tff(t1,axiom,![D3:$int]: (![X4]: ((many(X4,D3) <=> ![D2:$int]: (($lesseq(D2,D3) => many(X4,D2))))))).
+tff(t2,axiom,![X5]: (![X6]: ((?[D7:$int]: ((many(X5,D7) & (~many(X6,D7)))) => ![D8:$int]: ((many(X6,D8) => many(X5,D8))))))).
+tff(t3,axiom,?[D4:$int]: ((?[X5]: (((order(X5) & won(itel,X5)) & many(X5,D4))) & (~?[X6]: (((order(X6) & won(apcom,X6)) & many(X6,D4))))))).
+tff(t4,axiom,?[X2]: (((order(X2) & won(apcom,X2)) & many(X2,10)))).
+tff(h,conjecture,?[X2]: (((order(X2) & won(itel,X2)) & many(X2,11)))).

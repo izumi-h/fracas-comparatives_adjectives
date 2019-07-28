@@ -1,0 +1,3 @@
+(S (S/<S\NP> Mary) (S\NP (<S\NP>/NP won) (NP (N orders))))
+(S (S/<S\NP> Mary) (S\NP (<S\NP>/NP won) (NP (NP/N some) (N orders))))
+(S (S/<S\NP> Mary) (S\NP (<S\NP>/NP won) (NP (D ten) (NP\D (N orders)))))

@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <document id="d0">
+    <sentences>
+      <sentence id="s0">x<tokens annotators="dummy"><token surf="x" base="x" id="s0_0" offsetBegin="0" offsetEnd="1" pron="*" yomi="*" lemma="*" cForm="*" cType="*" pos3="*" pos2="*" pos1="*" pos="*"/></tokens><ccg id="s0_ccg0" root="s0_sp1"><span category="[x=true]" begin="0" end="1" id="s0_sp1" terminal="s0_0"/></ccg><semantics status="success" ccg_id="s0_ccg0" root="s0_sp1"><span id="s0_sp1" sem="\O.O"/></semantics></sentence>
+    </sentences>
+  </document>
+</root>

@@ -1,0 +1,2 @@
+(S (S/<S\NP> (NP ITEL)) (S\NP (<S\NP>/<S/<S\NP>> (<S\NP>/NP won) (<<S\NP>/<S/<S\NP>>>\<<S\NP>/NP> (<<<S\NP>/<S/<S\NP>>>\<<S\NP>/NP>>/N more) (N order))) (S/<S\NP> (S/S than) (S/<S\NP> (NP APCOM)))))
+(S (S/<S\NP> (NP ITEL)) (S\NP (<S\NP>/NP won) (NP (<S/<S\NP>>/N some) (N order))))

@@ -1,0 +1,2 @@
+(S (S/<S\NP> Mary) (S\NP (<S\NP>/<S/<S\NP>> (<S\NP>/NP won) (<<S\NP>/<S/<S\NP>>>\<<S\NP>/NP> (<<<S\NP>/<S/<S\NP>>>\<<S\NP>/NP>>/N more) (N orders))) (S/<S\NP> (S/S than) (S/<S\NP> Harry))))
+(S (S/<S\NP> Mary) (S\NP (<S\NP>/NP won) (NP (D (D/D at_least) (D eleven)) (NP\D (N orders)))))

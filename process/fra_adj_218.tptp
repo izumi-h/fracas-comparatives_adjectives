@@ -1,0 +1,10 @@
+tff(clever_type, type , clever : $i * $int > $o).
+tff(np_type, type , np : $i * $int > $int).
+tff(th_type, type , th : $i > $int).
+tff(person_type, type , person : $i > $o).
+tff(t1,axiom,![D3:$int]: (![X4]: ((clever(X4,D3) <=> ![D2:$int]: (($lesseq(D2,D3) => clever(X4,D2))))))).
+tff(t2,axiom,![X5]: (![X6]: ((?[D7:$int]: ((clever(X5,D7) & (~clever(X6,D7)))) => ![D8:$int]: ((clever(X6,D8) => clever(X5,D8))))))).
+tff(t3,axiom,![X2]: ((clever(X2,np(u,th(u))) <=> clever(X2,np(person,th(person)))))).
+tff(t4,axiom,![X2]: ((clever(X2,th(u)) <=> ?[D:$int]: ((clever(X2,D) & $less(th(u),D)))))).
+tff(t5,axiom,(clever(kim,np(person,th(person))) & person(kim))).
+tff(h,conjecture,clever(kim,np(u,th(u)))).

@@ -1,0 +1,8 @@
+tff(fast_type, type , fast : $i * $int > $o).
+tff(th_type, type , th : $i > $int).
+tff(t1,axiom,![D3:$int]: (![X4]: ((fast(X4,D3) <=> ![D2:$int]: (($lesseq(D2,D3) => fast(X4,D2))))))).
+tff(t2,axiom,![X5]: (![X6]: ((?[D7:$int]: ((fast(X5,D7) & (~fast(X6,D7)))) => ![D8:$int]: ((fast(X6,D8) => fast(X5,D8))))))).
+tff(t3,axiom,![X2]: ((fast(X2,th(u)) <=> ?[D:$int]: ((fast(X2,D) & $less(th(u),D)))))).
+tff(t4,axiom,![D2:$int]: ((fast(itel_xz,D2) => fast(pc_6082,D2)))).
+tff(t5,axiom,fast(itel_xz,th(u))).
+tff(h,conjecture,fast(pc_6082,th(u))).
