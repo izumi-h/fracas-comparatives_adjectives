@@ -124,8 +124,8 @@ def prover9_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates):
                 Fp = pred[0]
 
                 cp1 = lexpr('all x. all y. ((exists d1. (' + Fp + '(x,d1) & -' + Fp + '(y,d1))) -> all d2. (' + Fp + '(y,d2) -> ' + Fp + '(x,d2)))')
-                gp = lexpr('all d1. all x. (' + Fp + '(x,d1) <-> all d2. ($lesseq(d2,d1) -> ' + Fp + '(x,d2)))')
-                axiom.extend([cp1, gp])
+                ax2 = lexpr('all d1. all x. (' + Fp + '(x,d1) <-> all d2. ($lesseq(d2,d1) -> ' + Fp + '(x,d2)))')
+                axiom.extend([cp1, ax2])
 
                 if ('_th(_u)' in ((pred[1])[1])):
                     thp = lexpr('all x. (' + Fp + '(x,_th(_u)) <-> exists d. (' + Fp + '(x,d) & ($less(_th(_u),d))))')
@@ -138,8 +138,8 @@ def prover9_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates):
                 Fm = pred[0]
 
                 cp2 = lexpr('all x. all y. ((exists d1. (' + Fm + '(x,d1) & -' + Fm + '(y,d1))) -> all d2. (' + Fm + '(y,d2) -> ' + Fm + '(x,d2)))')
-                lp = lexpr('all d1. all x. (' + Fm + '(x,d1) <-> all d2. ($lesseq(d1,d2) -> ' + Fm + '(x,d2)))')
-                axiom.extend([cp2, lp])
+                ax1 = lexpr('all d1. all x. (' + Fm + '(x,d1) <-> all d2. ($lesseq(d1,d2) -> ' + Fm + '(x,d2)))')
+                axiom.extend([cp2, ax1])
 
                 if ('_th(_u)' in ((pred[1])[1])):
                     thm = lexpr('all x. (' + Fm + '(x,_th(_u)) <-> exists d. (' + Fm + '(x,d) & ($less(d,_th(_u)))))')
@@ -190,15 +190,15 @@ def prover9_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates):
         # le_irrefl = lexpr('all x. $lesseq(x,x)') # less or equal (<=) の反射性
 
         
-        ax1 = lexpr('all x. all y. (($less(x,y)) <-> ($lesseq(x,y) & -(x = y)))')
-        axiom.extend([ax1])
+        ax = lexpr('all x. all y. (($less(x,y)) <-> ($lesseq(x,y) & -(x = y)))')
+        axiom.extend([ax])
 
-        inn = lexpr('all d1. all x. (' + Fm + '(x,d1) <-> all d2. ($less(d1,d2) -> -' + Fp + '(x,d2)))')
-        inp = lexpr('all d1. all x. (' + Fp + '(x,d1) <-> all d2. ($less(d2,d1) -> -' + Fm + '(x,d2)))')
-        in1 = lexpr('all d1. all x. (-' + Fm + '(x,d1) <-> all d2. ($lesseq(d2,d1) -> ' + Fp + '(x,d2)))')
-        ip  = lexpr('all d1. all x. (-' + Fp + '(x,d1) <-> all d2. ($lesseq(d1,d2) -> ' + Fm + '(x,d2)))')
+        ax3 = lexpr('all d1. all x. (' + Fm + '(x,d1) <-> all d2. ($less(d1,d2) -> -' + Fp + '(x,d2)))')
+        ax4 = lexpr('all d1. all x. (' + Fp + '(x,d1) <-> all d2. ($less(d2,d1) -> -' + Fm + '(x,d2)))')
+        ax5 = lexpr('all d1. all x. (-' + Fm + '(x,d1) <-> all d2. ($lesseq(d2,d1) -> ' + Fp + '(x,d2)))')
+        ax6  = lexpr('all d1. all x. (-' + Fp + '(x,d1) <-> all d2. ($lesseq(d1,d2) -> ' + Fm + '(x,d2)))')
         #axiom.extend([lt_trans, lt_asym, lt_irrefl, le_trans, le_asym, le_irrefl, inn, inp, in1, ip, ax1])
-        axiom.extend([inn, inp, in1, ip])
+        axiom.extend([ax3, ax4, ax5, ax6])
             
 
     axiom = set(axiom)
