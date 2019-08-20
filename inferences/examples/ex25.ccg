@@ -1,2 +1,0 @@
-(S (S/<S\NP> Mary) (S\NP (<S\NP>/NP bought) (NP pens)))
-(S (S/<S\NP> Mary) (S\NP (<S\NP>/NP bought) (NP (NP/NP many) (NP pens))))

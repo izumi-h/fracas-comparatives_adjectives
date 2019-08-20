@@ -1,3 +1,0 @@
-(S (S/<S\NP> (<S/<S\NP>>/N all) (N mouse)) (S\NP (<S\NP>/N are) (N (N/N (<N/N>/<<S\NP>\D> pos2) (<S\NP>\D small)) (N animal))))
-(S (S/<S\NP> Mickey) (S\NP (<S\NP>/N is) (N (N/N a) (N (N/N (<N/N>/<<S\NP>\D> pos2) (<S\NP>\D large)) (N mouse)))))
-(S (S/<S\NP> Mickey) (S\NP (<S\NP>/N is) (N (N/N a) (N (N/N (<N/N>/<<S\NP>\D> pos2) (<S\NP>\D large)) (N animal)))))
