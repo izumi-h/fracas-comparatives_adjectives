@@ -15,7 +15,8 @@ prover=$2
 results_dir="./../results"
 mkdir -p $results_dir
 
-echo "システムの答え/正解/証明にかかった時間"
+# echo "システムの答え/正解/証明にかかった時間"
+echo "System answer/Gold answer/Time"
 
 total=0
 correct=0
