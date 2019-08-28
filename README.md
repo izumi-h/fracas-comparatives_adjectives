@@ -34,10 +34,10 @@ Here, there are codes for the CCG semantic parsing and the axioms of Comp.
 ```
 cd scripts
 ```
-評価はそこにある、`fracas.sh`で行う。
-第２引数に、section名（adjectives->adj, comparatives->comp）、
+評価はそこにある、`fracas.sh`で行う。  
+第２引数に、section名（adjectives->adj, comparatives->comp）、  
 第３引数に、prover名（vampire）を入力する。  
-e.g.：
+e.g.
 ```
 ./fracas.sh comp vampire
 ```
@@ -56,8 +56,8 @@ fra_comp_225.ccg: unknown/unknown/4.2712
 Accuracy: 29 / 31 = .9354
 Average time: 1.6729
 ```
-実行によって作成されたファイルは、resultsディレクトリ下に置かれる。
-各問題に対して作成されるファイルは、6つ (`.ans`/`.html`/`.sem.xml`/`.tptp`/`.xml`)。
-セクジョンごとに`adj_main.html`と`comp_main.html`も作成される。
+実行によって作成されたファイルは、resultsディレクトリ下に置かれる。  
+各問題に対して作成されるファイルは、6つ (`.ans`/`.html`/`.sem.xml`/`.tptp`/`.xml`)。  
+セクジョンごとに`adj_main.html`と`comp_main.html`も作成される。  
 
 
