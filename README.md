@@ -36,8 +36,8 @@ cd scripts
 ```
 評価はそこにある、`fracas.sh`で行う。
 第２引数に、section名（adjectives->adj, comparatives->comp）、
-第３引数に、prover名（vampire）を入力する。
-例
+第３引数に、prover名（vampire）を入力する。  
+e.g.：
 ```
 ./fracas.sh comp vampire
 ```
