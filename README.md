@@ -56,10 +56,4 @@ Average time: 1.6729
 ```
 実行によって作成されたファイルは、`results`ディレクトリ下に置かれる。  
 各問題に対して作成されるファイルは、6つ (`.ans`/`.html`/`.sem.xml`/`.tptp`/`.xml`)。  
-<<<<<<< HEAD
-セクションごとに`adj_main.html`と`comp_main.html`も作成される。  
-=======
-セクジョンごとに`adj_main.html`と`comp_main.html`も作成される。  
-
-
->>>>>>> f9981b986b4ab2d8cc76a85609a9c1bc3fc0ba18
+セクションごとに`adj_main.html`と`comp_main.html`も作成される。
