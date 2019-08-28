@@ -14,10 +14,8 @@ import re
 
 lexpr = Expression.fromstring
 
-#from eval_prover import call_axioms
 from eval_prover9 import prover9_axioms
 from eval_vampire import vampire_axioms
-#from vampire_axioms import call_axioms_v
 
 from os.path import expanduser
 HOME = expanduser("~")
@@ -34,20 +32,11 @@ def get_formulas_from_xml(doc):
         './sentences/sentence/semantics[1]/span[1]')]
     return formulas
 
-# # 公理たち
-# Fp = "_tall"
-# Fm = "_short"
-# obj = "_orders"
-# V = "_won"
-
 Fpos = {'_tall':0, '_large':1, '_clever':2, '_fast':3, '_many':4, '_important':5, '_genuine':6, '_fat':8, '_successful':9}
 Fneg = {'_short':0, '_small':1, '_stupid':2, '_slow':3}
 
 non_Aff = {'_former':0}
 Fex = {'_tall':0, '_large':1, '_fast':2, '_fat':3, '_short':4, '_small':5}
-
-# Fpos_v = {0: '_tall', 1: '_large', 2: '_clever', 3: '_fast'}
-# Fneg_v = {0: '_short', 1: '_small', 2: '_stupid', 3: '_slow'}
 
 Verbs = {'_won':0, '_lost':1, '_sold':2}
 Objs = {'_computer':0, '_order':1, '_person':2, '_customer':3, '_university_student':3, '_legal_authority':4, '_law_lecturer':5}
@@ -92,16 +81,13 @@ def prove_vampire(premises, conclusion, predicates, ax):
     axioms.extend(ax)
     #print(axioms)
     tptp_axioms = [convert_to_tptp(axiom) for axiom in axioms]
-    # axioms = [convert_to_tptp(axiom) for axiom in call_axioms(Fpos,Fmin)]
     
     premises = tptp_axioms + premises
     premises.append(conclusion)
     fols = convert_to_tptp_proof(premises)
-    #print(fols)
 
     F = list(Fpos.keys())
     F.extend(list(Fneg.keys()))
-    #print(F)
     
     type_f = []
 
@@ -128,24 +114,20 @@ def prove_vampire(premises, conclusion, predicates, ax):
         if (len(pred[1]) == 2) and ('_np' in (pred[1])[1]):
             type_f.append('tff(np_type, type , np : $i * $int > $int).')
             
-    #print(type_f)
     type_f = set(type_f)
     type_f = list(type_f)
-    #print(type_f)
         
     fols = type_f + fols
-    #print(fols)
     
     
     if ('many' in fols[0]):
         f = lexpr('all d1.-exists d2.($less(d1,d2) & $less(d2,$sum(d1,1)))')
         lemma = convert_to_tptp(f)
         fols.insert(-1, 'tff(p1,lemma,{0}).'.format(lemma))
-    #print(fols)
     
     arg = ARGS.sem.strip("results/")
     arg = arg.strip(".sem.xml")
-    with open("process/" + arg + ".tptp", "w", encoding="utf-8") as z:
+    with open("../tptp/" + arg + ".tptp", "w", encoding="utf-8") as z:
         for f in fols:
             z.write(f + "\n")
     tptp_script = ' '.join(fols)
@@ -226,11 +208,8 @@ def multi_theorem_proving(prove_fun, premises, conclusion, predicates, ax):
 
 def get_predicate(formula):
     predlst = []
-    #print(formula)
     preds = get_atomic_formulas(lexpr(formula))
-    #print(preds)
     for pred in preds:
-        #print(pred)
         if isinstance(pred, ApplicationExpression):
             predicate, args = pred.uncurry()
             pred_str = str(predicate)
@@ -238,8 +217,6 @@ def get_predicate(formula):
             item = [pred_str, args_str]
             if not item in predlst:
                 predlst.append(item)
-                #print(predlst)
-    #print(predlst)
     return predlst
 
 def main(args = None):
@@ -273,7 +250,6 @@ def main(args = None):
     doc = DOCS[0]
 
     formulas = get_formulas_from_xml(doc)
-    #print(formulas)
     if (formulas == ['\\O.O']):
         print('dammy')
 
@@ -282,14 +258,9 @@ def main(args = None):
         for formula in formulas:
                 
             preds = get_predicate(formula)
-            # print(preds)
             for pred in preds:
-                # print(pred)
-                # print(predicates)
                 if not pred in predicates:
                     predicates.append(pred)
-                #print(predicates)
-        #print(predicates)
 
         lst = []
         ax = []
