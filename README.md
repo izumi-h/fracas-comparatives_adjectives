@@ -21,12 +21,23 @@ Here, there are codes for the CCG semantic parsing and the axioms of Comp.
 * **fracas_plain**  
   * FraCaS test suite data
 * **inferences**  
-  * manually constructed CCG tree data using sections ADJECTIVES and COMPARATIVES of FraCaS
+  * manually constructed CCG tree data using sections ADJECTIVES and COMPARATIVES of FraCaS (`.ccg`ファイル)
+  * gold answer (`.ans`ファイル)
 * **scripts**  
 * **tptp**  
 
 
 ## Usage
+
+### システムの動かし方
+
+このシステムのprosess:
+1. CCG derivation tree (`.ccg`)
+2. Semantic representationへ変換 (`.sem.xml`)
+3. 使用する公理、前提と帰結をtptpフォーマットへ変換 (`.tptp`)
+4. Vampireを用いてtheorem provingを行う。
+
+### 実験の再現方法
 
 実行は全て`scripts`ディレクトリ下で行う。
 ```
@@ -55,5 +66,6 @@ Accuracy: 29 / 31 = .9354
 Average time: 1.6729
 ```
 実行によって作成されたファイルは、`results`ディレクトリ下に置かれる。  
-各問題に対して作成されるファイルは、6つ (`.ans`/`.html`/`.sem.xml`/`.tptp`/`.xml`)。  
+各問題に対して作成されるファイルは、6つ (`.ans`/`.html`/`.sem.err`/`.sem.xml`/`.tptp`/`.xml`)。  
 セクションごとに`adj_main.html`と`comp_main.html`も作成される。
+
