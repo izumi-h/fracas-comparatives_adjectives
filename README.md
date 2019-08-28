@@ -39,7 +39,7 @@ e.g.
 ```
 ./fracas.sh comp vampire
 ```
-すると、指定したsectionの全ての問題に対して、gold answer/system answer/timeが返ってくる:
+すると、指定したsectionの全ての問題に対して、gold answer, system answer, and timeが返ってくる:
 ```
 System answer/Gold answer/Time
 fra_comp_220.ccg: yes/yes/0.0492
