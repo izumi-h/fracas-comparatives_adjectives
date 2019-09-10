@@ -1,2 +1,0 @@
-tff(t1,axiom,![X2]: ((mammal(X2) => animal(X2)))).
-tff(h,conjecture,![X2]: (((four_legged(X2) & mammal(X2)) => (four_legged(X2) & animal(X2))))).

@@ -1,6 +1,0 @@
-tff(np_type, type , np : $i * $int > $int).
-tff(clever_type, type , clever : $i * $int > $o).
-tff(t1,axiom,![D3:$int]: (![X4]: ((clever(X4,D3) <=> ![D2:$int]: (($lesseq(D2,D3) => clever(X4,D2))))))).
-tff(t2,axiom,![X5]: (![X6]: ((?[D7:$int]: ((clever(X5,D7) & (~clever(X6,D7)))) => ![D8:$int]: ((clever(X6,D8) => clever(X5,D8))))))).
-tff(t3,axiom,((politician(john) & politician(bill)) & ?[D2:$int]: ((clever(john,np(politician,D2)) & (~clever(bill,np(politician,D2))))))).
-tff(h,conjecture,(~?[D2:$int]: ((clever(john,np(u,D2)) & (~clever(bill,np(u,D2))))))).

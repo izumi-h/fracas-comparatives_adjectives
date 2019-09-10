@@ -1,5 +1,0 @@
-tff(university_student_type, type , university_student : $i > $o).
-tff(former_type, type , former : $o > $o).
-tff(t1,axiom,![X2]: ((former(university_student(john)) => (~university_student(john))))).
-tff(t2,axiom,former(university_student(john))).
-tff(h,conjecture,(~university_student(john))).

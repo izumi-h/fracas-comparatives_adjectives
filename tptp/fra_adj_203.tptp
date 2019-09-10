@@ -1,2 +1,0 @@
-tff(t1,axiom,(four_legged(dombo) & animal(dombo))).
-tff(h,conjecture,four_legged(dombo)).
