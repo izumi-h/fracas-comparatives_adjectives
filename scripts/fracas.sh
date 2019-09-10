@@ -12,7 +12,7 @@
 section=$1
 prover=$2
 
-results_dir="./../results"
+results_dir="./results"
 mkdir -p $results_dir
 
 # echo "システムの答え/正解/証明にかかった時間"
@@ -22,18 +22,18 @@ total=0
 correct=0
 time=0
 
-for f in ./../inferences/fra_${section}*.ccg; do
+for f in ./inferences/fra_${section}*.ccg; do
   let total++
   fname=${f##*/}
-  ./prove.sh $f > $results_dir/${fname/.ccg/.ans} $prover
-  sys=`cat ./../results/${fname/.ccg/.ans} | awk -F',' '{print $1}'`
-  gold=`cat ./../inferences/${fname/.ccg/.ans}`
+  ./scripts/prove.sh $f > $results_dir/${fname/.ccg/.ans} $prover
+  sys=`cat ./results/${fname/.ccg/.ans} | awk -F',' '{print $1}'`
+  gold=`cat ./inferences/${fname/.ccg/.ans}`
 
   ans="dammy"
   if [ "${sys}" == "${ans}" ]; then
       echo "${fname}: ${sys}/${gold}/0.0000"
   else
-      prove_time=`cat ./../results/${fname/.ccg/.ans} | awk -F',' '{print $2}'`
+      prove_time=`cat ./results/${fname/.ccg/.ans} | awk -F',' '{print $2}'`
       if [ "${sys}" == "${gold}" ]; then
 	  let correct++
       fi
@@ -81,9 +81,9 @@ green_color="rgb(0,255,0)"
 white_color="rgb(255,255,255)"
 gray_color="rgb(136,136,136)"
 
-for gold_filename in `ls -v ./../inferences/fra_${section}*.ans`; do
+for gold_filename in `ls -v ./inferences/fra_${section}*.ans`; do
   fname=${gold_filename##*/}
-  sentences=`python get_sentences.py ./../inferences/${fname/.ans/.ccg} | sed 's|#END#|<br>|g'`
+  sentences=`python ./scripts/get_sentences.py ./inferences/${fname/.ans/.ccg} | sed 's|#END#|<br>|g'`
   system_answer=`cat $results_dir/${fname/.ccg/.ans} | awk -F',' '{print $1}'`
   time=`cat $results_dir/${fname/.ccg/.ans} | awk -F',' '{print $2}'`
   gold_answer=`cat $gold_filename`

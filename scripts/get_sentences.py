@@ -1,6 +1,8 @@
 from lxml import etree
 import argparse
+import sys
 
+sys.path.append("../ccg2lambda")
 from ccg2jiggxml import read_abc
 
 def main():
