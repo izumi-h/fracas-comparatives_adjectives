@@ -125,18 +125,17 @@ def prove_vampire(premises, conclusion, predicates, ax):
         f = lexpr('all d1.-exists d2.($less(d1,d2) & $less(d2,$sum(d1,1)))')
         lemma = convert_to_tptp(f)
         fols.insert(-1, 'tff(p1,lemma,{0}).'.format(lemma))
-    
-    arg = ARGS.sem.strip("results/")
+
+    arg = ARGS.sem.strip("./results")
     arg = arg.strip(".sem.xml")
-    print(arg)
-    with open("./tptp" + arg + ".tptp", "w", encoding="utf-8") as z:
+    with open("tptp/" + arg + ".tptp", "w", encoding="utf-8") as z:
         for f in fols:
             z.write(f + "\n")
     tptp_script = ' '.join(fols)
     ps = subprocess.Popen(('echo', tptp_script), stdout=subprocess.PIPE)
     try:
         output = subprocess.check_output(
-              (vampire_dir + '/vampire', '-t', '5', '--mode', 'casc'),
+              (vampire_dir + '/vampire', '-t', '2', '--mode', 'casc'),
               stdin=ps.stdout,
               stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
