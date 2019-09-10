@@ -128,6 +128,7 @@ def prove_vampire(premises, conclusion, predicates, ax):
     
     arg = ARGS.sem.strip("results/")
     arg = arg.strip(".sem.xml")
+    print(arg)
     with open("./tptp" + arg + ".tptp", "w", encoding="utf-8") as z:
         for f in fols:
             z.write(f + "\n")
