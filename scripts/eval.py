@@ -126,9 +126,11 @@ def prove_vampire(premises, conclusion, predicates, ax):
         lemma = convert_to_tptp(f)
         fols.insert(-1, 'tff(p1,lemma,{0}).'.format(lemma))
 
-    arg = ARGS.sem.strip("./results")
-    arg = arg.strip(".sem.xml")
-    with open("tptp/" + arg + ".tptp", "w", encoding="utf-8") as z:
+    # arg = ARGS.sem.strip("./results")
+    # arg = arg.strip(".sem.xml")
+    arg = ARGS.sem.strip(".sem.xml")
+    # with open("tptp/" + arg + ".tptp", "w", encoding="utf-8") as z:
+    with open("." + arg + ".tptp", "w", encoding="utf-8") as z:
         for f in fols:
             z.write(f + "\n")
     tptp_script = ' '.join(fols)
