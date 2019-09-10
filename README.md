@@ -21,8 +21,8 @@ Here, there are codes for the CCG semantic parsing and the axioms of Comp.
 * **fracas_plain**  
   * FraCaS test suite data
 * **inferences**  
-  * manually constructed CCG tree data using sections ADJECTIVES and COMPARATIVES of FraCaS (`.ccg`ファイル)
-  * gold answer (`.ans`ファイル)
+  * manually constructed CCG tree data using sections ADJECTIVES and COMPARATIVES of FraCaS (`.ccg`)
+  * gold answer (`.ans`)
 * **scripts**  
 * **tptp**  
 
@@ -31,7 +31,7 @@ Here, there are codes for the CCG semantic parsing and the axioms of Comp.
 
 ### システムの動かし方
 
-このシステムのprosess:
+The process of our system:
 1. CCG derivation tree (`.ccg`)
 2. Semantic representationへ変換 (`.sem.xml`)
 3. 使用する公理、前提と帰結をtptpフォーマットへ変換 (`.tptp`)
@@ -44,7 +44,7 @@ Here, there are codes for the CCG semantic parsing and the axioms of Comp.
 cd scripts
 ```
 評価はそこにある、`fracas.sh`で行う。  
-第２引数に、section名（adjectives->adj, comparatives->comp）、  
+第２引数に、section名（adjectives -> adj, comparatives -> comp）、  
 第３引数に、prover名（vampire）を入力する。  
 e.g.
 ```
