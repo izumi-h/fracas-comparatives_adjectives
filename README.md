@@ -52,20 +52,20 @@ The process of our system:
 3. Convert the axioms of COMP, premises and hypothesis to tptp format (`.tptp`)
 4. Run theorem proving by using Vampire
 
-### 実験の再現方法
 
-実行は全て`scripts`ディレクトリ下で行う。
+In order to run our system, you move the `script` directory.
 ```
 cd scripts
 ```
-評価はそこにある、`fracas.sh`で行う。  
-第２引数に、section名 (adjectives -> adj, comparatives -> comp)、  
-第３引数に、prover名 (vampire) を入力する。  
+`fracas.sh` is a file to evaluate our system.
+Write: 
+- In the second argument, section name (adjectives-> adj, comparatives-> comp)
+- In the third argument, prover name (vampire) 
 e.g.
 ```
 ./fracas.sh comp vampire
 ```
-すると、指定したsectionの全ての問題に対して、gold answer, system answer, and timeが返ってくる:
+Then, gold answer, system answer, and time are returned for all problems in the specified section.:
 ```
 System answer/Gold answer/Time
 fra_comp_220.ccg: yes/yes/0.0492
@@ -75,12 +75,12 @@ fra_comp_223.ccg: no/no/2.1593
 fra_comp_224.ccg: yes/yes/0.0208
 fra_comp_225.ccg: unknown/unknown/4.2712
 ```
-全ての問題の評価が終わると、最後に全体の精度とAverage timeが出力される:
+When all problems have been evaluated, the overall accuracy and average time are finally output:
 ```
 Accuracy: 29 / 31 = .9354
 Average time: 1.6729
 ```
-実行によって作成されたファイルは、`results`ディレクトリ下に置かれる。  
-各問題に対して作成されるファイルは、6つ (`.ans`/`.html`/`.sem.err`/`.sem.xml`/`.tptp`/`.xml`)。  
-セクションごとに`adj_main.html`と`comp_main.html`も作成される。
+The created file is placed under the `results` directory.
+There are six created files for each problem (`.ans`/`.html`/`.sem.err`/`.sem.xml`/`.tptp`/`.xml`).
+Please check that `Adj_main.html` and` comp_main.html` are also created for each section.
 
