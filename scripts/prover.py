@@ -14,8 +14,8 @@ import re
 
 lexpr = Expression.fromstring
 
-from eval_prover9 import prover9_axioms
-from eval_vampire import vampire_axioms
+from axiom_prover9 import prover9_axioms
+from axiom_vampire import vampire_axioms
 
 from os.path import expanduser
 HOME = expanduser("~")
