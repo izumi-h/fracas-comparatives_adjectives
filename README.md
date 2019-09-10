@@ -14,12 +14,29 @@ Here, there are codes for the CCG semantic parsing and the axioms of Comp.
 
 ## Installation
 
-## Setting
+### For ccg2lambda
+To use the part of ccg2lambda in our system, it is necessary to install python3, nltk, lxml, simplejson and yaml python libraries.
+See [installation](https://github.com/mynlp/ccg2lambda#installation) in ccg2lambda in detail.
+
+### For Vampire
+In your home directory, run git clone of [Vampire](https://github.com/vprover/vampire).
+```
+git clone https://github.com/vprover/vampire.git
+```
+Make the file.
+```
+make vampire_rel
+```
+Rename created files (eg. vampire_rel_master_4123) `vampire`.
+```
+mv vampire_rel_master_XXXX vampire
+```
+
 
 * **ccg2lambda**  
   * CCG semantic parsing
 * **fracas_plain**  
-  * FraCaS test suite data
+  * FraCaS test suite data (https://nlp.stanford.edu/~wcmac/downloads/fracas.xml)
 * **inferences**  
   * manually constructed CCG tree data using sections ADJECTIVES and COMPARATIVES of FraCaS (`.ccg`)
   * gold answer (`.ans`)
@@ -29,13 +46,11 @@ Here, there are codes for the CCG semantic parsing and the axioms of Comp.
 
 ## Usage
 
-### システムの動かし方
-
 The process of our system:
 1. CCG derivation tree (`.ccg`)
-2. Semantic representationへ変換 (`.sem.xml`)
-3. 使用する公理、前提と帰結をtptpフォーマットへ変換 (`.tptp`)
-4. Vampireを用いてtheorem provingを行う。
+2. Convert it to Semantic representation (`.sem.xml`)
+3. Convert the axioms of COMP, premises and hypothesis to tptp format (`.tptp`)
+4. Run theorem proving by using Vampire
 
 ### 実験の再現方法
 
