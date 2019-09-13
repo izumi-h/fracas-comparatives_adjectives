@@ -1,71 +1,52 @@
-# Inference system for comparative and adjectives of FraCaS
+# Compositional Semantics and Inference System for Comparatives
 
-*The datasets and codes for my PACLIC33 paper.*
+This repository contains code for our paper [A CCG-based Compositional Semantics and Inference System for Comparatives](https://jaslli.org/files/proceedings/08_paclic33_proceedings.pdf).
 
-This is a program of the inference system that tries to prove FraCaS test suite of section ADJECTIVES and COMPARATIVES.
-
-Here, there are codes for the CCG semantic parsing and the axioms of Comp.
+  - Izumi Haruta, Koji Mineshima and Daisuke Bekki. A CCG-based Compositional Semantics and Inference System for Comparatives. The 33rd Pacific Asia Conference on Language, Information and Computation (PACLIC 33).
 
 ## Requirements
 
-* Python 3.6.5
-* [Vampire](https://github.com/vprover/vampire)
+* Python 3.6.5+
+* [Vampire](https://github.com/vprover/vampire) 4.3.0
 
 
-## Installation
+## Setup
 
-### For ccg2lambda
-To use the part of ccg2lambda in our system, it is necessary to install python3, nltk, lxml, simplejson and yaml python libraries.
-See [installation](https://github.com/mynlp/ccg2lambda#installation) in ccg2lambda in detail.
+The system uses scripts available from [ccg2lambda](https://github.com/mynlp/ccg2lambda). It is necessary to install python3 (3.6.5+), nltk, lxml, simplejson and pyyaml python libraries.
+See [installation](https://github.com/mynlp/ccg2lambda#installation) of ccg2lambda.
 
-### For Vampire
-In your home directory, run git clone of [Vampire](https://github.com/vprover/vampire).
-```
-git clone https://github.com/vprover/vampire.git
-```
-Make the file.
+To install Vampire, download and unzip [Version 4.3.0](https://github.com/vprover/vampire/archive/4.3.0.zip).
+Change your directory to where you unzipped and run:
+
 ```
 make vampire_rel
 ```
-Rename created files (eg. vampire_rel_master_4123) `vampire`.
+
+Then, rename the created file (eg. `vampire_rel_master_7`) `vampire`.
+
 ```
 mv vampire_rel_master_XXXX vampire
 ```
 
+## Running the system on the FraCaS test suite
 
-* **ccg2lambda**  
-  * CCG semantic parsing
-* **fracas_plain**  
-  * FraCaS test suite data (https://nlp.stanford.edu/~wcmac/downloads/fracas.xml)
-* **inferences**  
-  * manually constructed CCG tree data using sections ADJECTIVES and COMPARATIVES of FraCaS (`.ccg`)
-  * gold answer (`.ans`)
-* **scripts**  
-* **tptp**  
+In order to run experiments on [the FraCaS test suite](https://nlp.stanford.edu/~wcmac/downloads/fracas.xml), first clone our repository:
 
-
-## Usage
-
-The process of our system:
-1. CCG derivation tree (`.ccg`)
-2. Convert it to Semantic representation (`.sem.xml`)
-3. Convert the axioms of COMP, premises and hypothesis to tptp format (`.tptp`)
-4. Run theorem proving by using Vampire
-
-
-In order to run our system, you move the `script` directory.
 ```
-cd scripts
+git clone https://github.com/izumi-h/fracas-comparatives_adjectives.git
 ```
-`fracas.sh` is a file to evaluate our system.
-Write: 
-- In the second argument, section name (adjectives-> adj, comparatives-> comp)
-- In the third argument, prover name (vampire) 
-e.g.
+
+Change your directory to where you cloned the repository and run the following:
+
 ```
-./fracas.sh comp vampire
+cd fracas-comparatives_adjectives
+./scripts/fracas.sh comp vampire
 ```
-Then, gold answer, system answer, and time are returned for all problems in the specified section.:
+
+This command runs evaluation on the COMPARATIVE section of FraCaS. If you change `comp` to `adj`, it runs evaluation on the ADJECTIVE section.
+
+Then, gold answer, system answer, and time are shown for all problems in the section. Below that the overall accuracy and average proving time are to be indicated:
+
 ```
 System answer/Gold answer/Time
 fra_comp_220.ccg: yes/yes/0.0492
@@ -74,13 +55,55 @@ fra_comp_222.ccg: unknown/unknown/4.3367
 fra_comp_223.ccg: no/no/2.1593
 fra_comp_224.ccg: yes/yes/0.0208
 fra_comp_225.ccg: unknown/unknown/4.2712
-```
-When all problems have been evaluated, the overall accuracy and average time are finally output:
-```
+...
 Accuracy: 29 / 31 = .9354
 Average time: 1.6729
 ```
-The created file is placed under the `results` directory.
-There are six created files for each problem (`.ans`/`.html`/`.sem.err`/`.sem.xml`/`.tptp`/`.xml`).
-Please check that `Adj_main.html` and` comp_main.html` are also created for each section.
 
+By default, created files are to be stored in the `results` directory.
+
+- `results/*.ans` -- system prediction (yes, no, unknown) 
+- `results/*.html` -- visualized CCG derivation tree with semantic representation: the CCG tree for each FraCaS problem is accessible from
+`results/main.html` and `results/comp_main.html`. 
+- `results/*.sem.xml` -- CCG derivation tress in XML format
+- `results/*.tptp` -- semantic representation in [tptp format](http://www.tptp.org/)
+
+## Code Structure
+
+The code is divided into the following:
+
+1.  `./ccg2lambda` -- scripts from [ccg2lambda](https://github.com/mynlp/ccg2lambda)
+2.  `./fracas\_plain` -- inference problems from [FraCaS](https://nlp.stanford.edu/~wcmac/downloads/fracas.xml). In each `fracas_plain/*.txt` file, a set of premises and a hypothesis are shown line by line. For example, for ID fracas\_220, the first two lines are premises and the final line "The PC_6082 is fast" is a hypothesis.
+```
+$ cat fracas_plain/fracas_220_comparatives.txt
+The PC_6082 is faster than the ITEL_XZ.
+The ITEL_XZ is fast.
+The PC_6082 is fast.
+```
+The gold answer label is in `fracas_plain/*.txt`.
+```  
+$ cat fracas_plain/fracas_220_comparatives.answer
+yes
+```
+3. `./inferences` -- gold CCG derivations trees manually constructed
+```
+$ cat inferences/fra_comp_220.ccg
+(S (S/<S\NP> (NP (NP/N the) (N PC_6082))) (S\NP (<S\NP>/<S\NP> is) (S\NP (<S\NP>/<S/<S\NP>> (<S\NP>\D fast) (<<S\NP>/<S/<S\NP>>>\<<S\NP>\D> er)) (S/<S\NP> (S/S than) (S/<S\NP> (NP (NP/N the) (N ITEL_XZ)))))))
+(S (S/<S\NP> (NP (NP/N the) (N ITEL_XZ))) (S\NP (<S\NP>/<S\NP> is) (S\NP (<S\NP>/<<S\NP>\D> pos) (<S\NP>\D fast))))
+(S (S/<S\NP> (NP (NP/N the) (N PC_6082))) (S\NP (<S\NP>/<S\NP> is) (S\NP (<S\NP>/<<S\NP>\D> pos) (<S\NP>\D fast))))
+```
+4. `./scripts` - main scripts including semantic templates (`scripts/templates_comparatives.yaml`) and the COMP axioms.
+
+## Citation
+
+```
+@InProceedings{haruta2019:paclic,
+  author    = {Haruta, Izumi and Mineshima, Koji and Bekki, Daisuke},
+  title     = {A CCG-based Compositional Semantics and Inference System for Comparatives},
+  booktitle = {Proceedings of 33rd Pacific Asia Conference on Language, Information and Computation (PACLIC 33)},
+  month     = {September},
+  year      = {2019},
+  address   = {Hakodate, Japan},
+  pages     = {67--76}
+}
+```
