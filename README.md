@@ -7,45 +7,51 @@ This repository contains code for our paper [A CCG-based Compositional Semantics
 ## Requirements
 
 * Python 3.6.5+
-* [Vampire](https://github.com/vprover/vampire) 4.3.0
+* [Vampire](https://github.com/vprover/vampire) 4.3.0+
 
 
 ## Setup
 
-The system uses scripts available from [ccg2lambda](https://github.com/mynlp/ccg2lambda). It is necessary to install python3 (3.6.5+), nltk, lxml, simplejson and pyyaml python libraries.
-See [installation](https://github.com/mynlp/ccg2lambda#installation) of ccg2lambda.
-
-To install Vampire, download and unzip [Version 4.3.0](https://github.com/vprover/vampire/archive/4.3.0.zip).
-Change your directory to where you unzipped and run:
+The system uses scripts available from [ccg2lambda](https://github.com/mynlp/ccg2lambda). It is necessary to install python3 (3.6.5 or later), nltk, lxml, simplejson and pyyaml python libraries.
+You can install these packages with pip:
 
 ```
-make vampire_rel
+pip install lxml simplejson pyyaml nltk
 ```
 
-Then, rename the created file (eg. `vampire_rel_master_7`) `vampire`.
+See also [installation](https://github.com/mynlp/ccg2lambda#installation) of ccg2lambda.
 
-```
-mv vampire_rel_master_XXXX vampire
-```
-
-## Running the system on the FraCaS test suite
-
-In order to run experiments on [the FraCaS test suite](https://nlp.stanford.edu/~wcmac/downloads/fracas.xml), first clone our repository:
+To run the system, first clone our repository:
 
 ```
 git clone https://github.com/izumi-h/fracas-comparatives_adjectives.git
 ```
 
-Change your directory to where you cloned the repository and run the following:
+To install Vampire, change your directory to where you cloned the repository and run the following:
 
 ```
 cd fracas-comparatives_adjectives
+./install_vampire.sh
+```
+
+This command downloads Vampire (version 4.4.0) to `fracas-comparatives_adjectives/vampire-4.4`. 
+You can change the location of Vampire by editing `scripts/vampire_dir.txt`.
+
+## Running the system on the FraCaS test suite
+
+Run experiments on [the FraCaS test suite](https://nlp.stanford.edu/~wcmac/downloads/fracas.xml):
+
+```
 ./scripts/fracas.sh comp vampire
 ```
 
 This command runs evaluation on the COMPARATIVE section of FraCaS. If you change `comp` to `adj`, it runs evaluation on the ADJECTIVE section.
 
-Then, gold answer, system answer, and time are shown for all problems in the section. Below that the overall accuracy and average proving time are to be indicated:
+```
+./scripts/fracas.sh adj vampire
+```
+
+The outputs are shown as:
 
 ```
 System answer/Gold answer/Time
@@ -60,6 +66,8 @@ Accuracy: 29 / 31 = .9354
 Average time: 1.6729
 ```
 
+Here, system answer, gold answer, and proving time are indicated for each problem. The overall accuracy and average proving time are also shown.
+
 By default, created files are to be stored in the `results` directory.
 
 - `results/*.ans` -- system prediction (yes, no, unknown) 
@@ -67,6 +75,13 @@ By default, created files are to be stored in the `results` directory.
 `results/main.html` and `results/comp_main.html`. 
 - `results/*.sem.xml` -- CCG derivation tress in XML format
 - `results/*.tptp` -- semantic representation in [tptp format](http://www.tptp.org/)
+
+You can also run the system on each inference in FraCaS.
+For example, the following tried to prove the inference with ID FraCaS-243:
+
+```
+./scripts/prove.sh inferences/fra_comp_243.ccg vampire
+```
 
 ## Code Structure
 
