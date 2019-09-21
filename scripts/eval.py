@@ -17,13 +17,10 @@ lexpr = Expression.fromstring
 from axiom_prover9 import prover9_axioms
 from axiom_vampire import vampire_axioms
 
-from os.path import expanduser
-HOME = expanduser("~")
-vampire_dir = HOME + "/vampire"
-
+file = open("./scripts/vampire_dir.txt")
+vampire_dir = file.read().strip()
 
 sys.path.append("./ccg2lambda")
-
 
 from nltk2tptp import convert_to_tptp_proof, convert_to_tptp
 from nltk2normal import get_atomic_formulas
@@ -137,7 +134,7 @@ def prove_vampire(premises, conclusion, predicates, ax):
     ps = subprocess.Popen(('echo', tptp_script), stdout=subprocess.PIPE)
     try:
         output = subprocess.check_output(
-              (vampire_dir + '/vampire', '-t', '2', '--mode', 'casc'),
+              (vampire_dir + '/vampire', '-t', '15', '--mode', 'casc'),
               stdin=ps.stdout,
               stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
