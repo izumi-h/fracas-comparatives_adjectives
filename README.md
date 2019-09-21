@@ -13,7 +13,7 @@ This repository contains code for our paper [A CCG-based Compositional Semantics
 ## Setup
 
 The system uses scripts available from [ccg2lambda](https://github.com/mynlp/ccg2lambda). It is necessary to install python3 (3.6.5 or later), nltk, lxml, simplejson and pyyaml python libraries.
-You can install these packages with pip:
+If python3 and pip are already installed, you can install these packages with pip:
 
 ```
 pip install lxml simplejson pyyaml nltk
