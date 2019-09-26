@@ -152,11 +152,9 @@
   semantics: \E A N Q x. (N(x) & Q(N) & exists d.(A(_np(N,d),x) & -Q(A(_np(N,d)))))
   surf: er2
 
-# 動詞の等価
 - category: ((((S\NP)\(S/(S\NP)))\((S\NP)/NP))/N)/((NP/N)\D)
   semantics: \E F N G Q z. all d.(exists y.(N(y) & Q(G(\P.P(y))) & F(d,y)) -> exists x. (N(x) & G(\P.P(x),z) & F(d,x)))
 
-# 動詞の倍数
 - category: (((((S\NP)\(S/(S\NP)))\((S\NP)/NP))/N)/((NP/N)\D))\D
   semantics: \E D F N G Q z. all d.(exists y.(N(y) & Q(G(\P.P(y))) & F(d,y)) -> exists x. (N(x) & G(\P.P(x),z) & F(D(d),x)))
 
@@ -172,12 +170,10 @@
   semantics: \E N c G Q z. all d. (exists x. (N(x) & Q(G(\P.P(x))) & _many(x,d)) -> exists y. (N(y) & G(\P.P(y),z) & _many(y,$sum(d,c))))
   surf: more
 
-# 形容詞+名詞の比較(動詞読み)
 - category: ((((S\NP)/(S/(S\NP)))\((S\NP)/NP))/N)/((S\NP)\D)
   semantics: \E A N G Q z. exists d. (exists x. (N(x) & G(\P. P(x),z) & A(d,x)) & -exists y. (N(y) & Q(G(\P. P(y))) & A(d,y)))
   surf: more
 
-# 形容詞+名詞の比較(be動詞読み)
 - category: ((((S\NP)/(S/(S\NP)))\((S\NP)/NP))/N)/((S\NP)\D)
   semantics: \E A N G Q z. exists d. (exists x. (N(x) & G(\P. P(x),z) & A(d,x)) & -Q(\y. (N(y) & A(d,y))))
   surf: more2
@@ -216,27 +212,22 @@
 
 ### articles ###
 
-# 主語（動詞）
 - category: (S/(S\NP))/N
   semantics: \E F G. exists x. (F(x) & G(x)) 
   surf: a
 
-# 目的語（be動詞）
 - category: ((S\NP)\((S\NP)/N))/N
   semantics: \E N V . V(N) 
   surf: a
 
-# 目的語（動詞）
 - category: ((S\NP)\((S\NP)/NP))/N
   semantics: \E F G z. exists x. (F(x) & G(\P. P(x),z)) 
   surf: a2
 
-# 目的語（be動詞）
 - category: N/N
   semantics: \E X. X 
   surf: a
 
-# 目的語（動詞+形容詞+名詞）
 - category: (((S\NP)/(S/(S\NP)))\((S\NP)/NP))/(((S\NP)/(S/(S\NP)))\((S\NP)/NP))
   semantics: \E X. X 
   surf: a

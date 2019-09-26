@@ -9,21 +9,16 @@ lexpr = Expression.fromstring
 
 import time
 
-# 論理記号
-# 否定     -A
-# 連言     A & B
-# 選言     A | B
-# 条件法   A -> B
-# 全称量化 all x. A
-# 存在量化 exists x. A
-# 等号     x = y
-# ラムダ   \x. A
+## Logical formulas ##
 
-##### カッコについての注意!! #####
-# exists x. F(x) & G(x) は (exists x. F(x)) & G(x) と読まれてしまう。exists x. (F(x) & G(x)) と書かないといけない。
-# 例えば、
-# exists d. (tall(john,d) & -tall(bob,d)) のようにカッコが exists d. の後に必要
-# exists d. tall(john,d) & -tall(bob,d) だと (exists d. tall(john,d)) & -tall(bob,d) の意味になる。
+# Negation: -A
+# Conjunction: A & B
+# Disjunction: A | B
+# Conditional mood: A -> B
+# Universal quantifier: all x. A
+# Existential quantifier: exists x. A
+# Equal: x = y
+# Lambda formula: \x. A
 
 class Inference:
     def __init__(self, number, gold, premises, conclusion):
@@ -59,14 +54,6 @@ def prove(premises, conclusion):
         answer = prove_neg(premises, conclusion)
         return answer
 
-# 公理たち
-#Fp = "tall"
-#Fm = "short"
-Fp = "large"
-Fm = "small"
-obj = "_orders"
-V = "_won"
-
 def prover9_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates):
     axiom = []
     Fp = Fm = ''
@@ -75,14 +62,14 @@ def prover9_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates):
 
     for pred in predicates:
 
-        # 形容詞
+        # Adjectives
         if ((pred[0] in Fpos) or (pred[0] in Fneg)):
 
             if (pred[1][1] == '_np(_u,_th(_u))'):
                 defcom = lexpr('all x. (' + pred[0] + '(x,_np(_u,_th(_u))) <-> ' + pred[0] + '(x,_np(_person,_th(_person))))')
                 axiom.extend([defcom])
                 
-            # 数字と四則演算があるか調べる
+            # Number
             if ('10' in (pred[1])[1]):
                 num10 = lexpr('10 = ' + 'S('*10 + 'O' + ')'*10)
                 axiom.extend([num10])
@@ -109,7 +96,7 @@ def prover9_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates):
             
             if ('$sum' in (pred[1])[1]):
 
-                # ロビンソン算術(足し算)
+                # Robinson arithmetic
                 q1 = lexpr('all x. (-(O = S(x)))')
                 q2 = lexpr('all x. all y. ((S(x) = S(y)) -> (x = y))')
                 q3 = lexpr('all x. ((-(x = O)) -> exists y. (x = S(y)))')
@@ -118,7 +105,7 @@ def prover9_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates):
                 q6 = lexpr('all x. all y. (($lesseq(x,y)) <-> (exists z. (($sum(x,z)) = y)))')
                 axiom.extend([q1, q2, q3, q4, q5, q6])
 
-            # 正の形容詞
+            # Positive adjectives
             if (pred[0] in Fpos):
             
                 Fp = pred[0]
@@ -132,7 +119,7 @@ def prover9_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates):
                     axiom.extend([thp])
 
 
-            # 負の形容詞
+            # Negative adjectives
             elif (pred[0] in Fneg):
 
                 Fm = pred[0]
@@ -147,29 +134,29 @@ def prover9_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates):
                 
         elif (pred[0] == '$less'):
                 
-            # less than ($less) の公理
-            lt_trans = lexpr('all x y z. (($less(x,y) & $less(y,z)) -> $less(x,z))') # less than (<) の推移性
-            lt_asym = lexpr('all x y. (($less(x,y) & $less(y,x)) -> (x = y))') # less than (<) の反対称性
-            lt_irrefl = lexpr('all x. -$less(x,x)') # less than (<) の非反射性
+            # less than ($less)
+            lt_trans = lexpr('all x y z. (($less(x,y) & $less(y,z)) -> $less(x,z))')
+            lt_asym = lexpr('all x y. (($less(x,y) & $less(y,x)) -> (x = y))') 
+            lt_irrefl = lexpr('all x. -$less(x,x)') 
             axiom.extend([lt_trans, lt_asym, lt_irrefl])
                 
         elif (pred[0] == '$lesseq'):
 
-            # less or equal ($lesseq) の公理
-            le_trans = lexpr('all x y z. (($lesseq(x,y) & $lesseq(y,z)) -> $lesseq(x,z))') # less or equal (<=) の推移性
-            le_asym = lexpr('all x y. (($lesseq(x,y) & $lesseq(y,x)) -> (x = y))') # less or equal (<=) の反対称性
-            le_irrefl = lexpr('all x. $lesseq(x,x)') # less or equal (<=) の反射性
+            # less or equal ($lesseq) 
+            le_trans = lexpr('all x y z. (($lesseq(x,y) & $lesseq(y,z)) -> $lesseq(x,z))')
+            le_asym = lexpr('all x y. (($lesseq(x,y) & $lesseq(y,x)) -> (x = y))')
+            le_irrefl = lexpr('all x. $lesseq(x,x)')
             axiom.extend([le_trans, le_asym, le_irrefl])
 
-        # 動詞
+        # Verbs
         elif (pred[0] in Verbs):
             V = pred[0]
 
-        # 目的語
+        # Objectives
         elif (pred[0] in Objs):
             obj = pred[0]
 
-        # formerの場合
+        # former
         elif ((pred[0] in '_former') and (type(pred[1][0]) is str)):
             aff = lexpr('all x. (_former(' + pred[1][0] + ') -> -' + pred[1][0] + ')')
             axiom.extend([aff])
@@ -179,25 +166,12 @@ def prover9_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates):
         
             
     if ((Fp != '') and (Fm != '')):
-        # # less than ($less) の公理
-        # lt_trans = lexpr('all x y z. (($less(x,y) & $less(y,z)) -> $less(x,z))') # less than (<) の推移性
-        # lt_asym = lexpr('all x y. (($less(x,y) & $less(y,x)) -> (x = y))') # less than (<) の反対称性
-        # lt_irrefl = lexpr('all x. -$less(x,x)') # less than (<) の非反射性
-            
-        # # less or equal ($lesseq) の公理
-        # le_trans = lexpr('all x y z. (($lesseq(x,y) & $lesseq(y,z)) -> $lesseq(x,z))') # less or equal (<=) の推移性
-        # le_asym = lexpr('all x y. (($lesseq(x,y) & $lesseq(y,x)) -> (x = y))') # less or equal (<=) の反対称性
-        # le_irrefl = lexpr('all x. $lesseq(x,x)') # less or equal (<=) の反射性
-
-        
         ax = lexpr('all x. all y. (($less(x,y)) <-> ($lesseq(x,y) & -(x = y)))')
         axiom.extend([ax])
-
         ax3 = lexpr('all d1. all x. (' + Fm + '(x,d1) <-> all d2. ($less(d1,d2) -> -' + Fp + '(x,d2)))')
         ax4 = lexpr('all d1. all x. (' + Fp + '(x,d1) <-> all d2. ($less(d2,d1) -> -' + Fm + '(x,d2)))')
         ax5 = lexpr('all d1. all x. (-' + Fm + '(x,d1) <-> all d2. ($lesseq(d2,d1) -> ' + Fp + '(x,d2)))')
         ax6  = lexpr('all d1. all x. (-' + Fp + '(x,d1) <-> all d2. ($lesseq(d1,d2) -> ' + Fm + '(x,d2)))')
-        #axiom.extend([lt_trans, lt_asym, lt_irrefl, le_trans, le_asym, le_irrefl, inn, inp, in1, ip, ax1])
         axiom.extend([ax3, ax4, ax5, ax6])
             
 
@@ -207,7 +181,7 @@ def prover9_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates):
     return axiom
 
 def main():
-    print('正解/システムの答え')
+    print('Gold answer/System answer')
     total_problem = 0
     correct_answer = 0
 

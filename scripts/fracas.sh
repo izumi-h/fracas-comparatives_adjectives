@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# 使い方
+# Usage
 # ./fracas.sh <section> <prover>
 #
-# <section> は adj, comp
-# <prover> は prover9, vampire
+# <section>: adj, comp
+# <prover>: prover9, vampire
 #
-# 例
+# Example
 # ./fracas.sh comp vampire
 
 section=$1
@@ -15,7 +15,6 @@ prover=$2
 results_dir="./results"
 mkdir -p $results_dir
 
-# echo "システムの答え/正解/証明にかかった時間"
 echo "System answer/Gold answer/Time"
 
 total=0
