@@ -1,6 +1,6 @@
 # Compositional Semantics and Inference System for Comparatives
 
-This repository contains code for our paper [A CCG-based Compositional Semantics and Inference System for Comparatives](https://jaslli.org/files/proceedings/08_paclic33_proceedings.pdf).
+This repository contains code for our paper [A CCG-based Compositional Semantics and Inference System for Comparatives](https://arxiv.org/abs/1910.00930).
 
   - Izumi Haruta, Koji Mineshima and Daisuke Bekki. A CCG-based Compositional Semantics and Inference System for Comparatives. The 33rd Pacific Asia Conference on Language, Information and Computation (PACLIC 33).
 
@@ -122,3 +122,6 @@ $ cat inferences/fra_comp_220.ccg
   pages     = {67--76}
 }
 ```
+
+## Results
+You can see the html files page as the results that maps CCG derivation trees to semantic representaions from here[https://drive.google.com/drive/folders/1F0iZEp9p4KWf28fYhrZ1WCC2shSCGe9O].
