@@ -54,8 +54,9 @@ def prove(premises, conclusion):
         answer = prove_neg(premises, conclusion)
         return answer
 
-def vampire_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates):
+def vampire_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates, lst):
     axiom = []
+    objlst = []
     Fp = Fm = ''
 
     foFla = ''
@@ -103,6 +104,7 @@ def vampire_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates):
         # Objectives
         elif (pred[0] in Objs):
             obj = pred[0]
+            objlst.append(pred[0])
 
         # former
         elif ((pred[0] in '_former') and (type(pred[1][0]) is str)):
@@ -119,6 +121,16 @@ def vampire_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates):
         ax5 = lexpr('all d1. all x. (-' + Fm + '(x,d1) <-> all d2. ($lesseq(d2,d1) -> ' + Fp + '(x,d2)))')
         ax6  = lexpr('all d1. all x. (-' + Fp + '(x,d1) <-> all d2. ($lesseq(d1,d2) -> ' + Fm + '(x,d2)))')
         axiom.extend([ax3, ax4, ax5, ax6])
+
+    objlst = set(objlst)
+    objlst = list(objlst)
+
+    if lst != []:
+        for i in range(len(objlst)):
+            for j in range(len(objlst)):
+                
+                ax = lexpr('(all x. (' + objlst[i] + '(x) <-> ' + objlst[j] + '(x))) -> (_th(' + objlst[i] + ') = _th(' + objlst[j] + '))')
+                axiom.extend([ax])
             
 
     axiom = set(axiom)

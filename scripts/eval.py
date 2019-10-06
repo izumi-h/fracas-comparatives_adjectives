@@ -30,7 +30,7 @@ def get_formulas_from_xml(doc):
         './sentences/sentence/semantics[1]/span[1]')]
     return formulas
 
-Fpos = {'_tall':0, '_large':1, '_clever':2, '_fast':3, '_many':4, '_important':5, '_genuine':6, '_fat':8, '_successful':9}
+Fpos = {'_tall':0, '_large':1, '_clever':2, '_fast':3, '_many':4, '_important':5, '_genuine':6, '_fat':8, '_successful':9, '_competent':10}
 Fneg = {'_short':0, '_small':1, '_stupid':2, '_slow':3}
 
 non_Aff = {'_former':0}
@@ -40,9 +40,8 @@ Verbs = {'_won':0, '_lost':1, '_sold':2}
 Objs = {'_computer':0, '_order':1, '_person':2, '_customer':3, '_university_student':3, '_legal_authority':4, '_law_lecturer':5}
 
 
-def prove_prover9mace(premises, conclusion, predicates, ax):
-    axioms = prover9_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates)
-    axioms.extend(ax)
+def prove_prover9mace(premises, conclusion, predicates, lst):
+    axioms = prover9_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates, lst)
     #print(axioms)
     premises = axioms + premises
     def prover_fun(queue):
@@ -73,10 +72,9 @@ def prove_prover9mace(premises, conclusion, predicates, ax):
         result = not result
     return result
 
-def prove_vampire(premises, conclusion, predicates, ax):
+def prove_vampire(premises, conclusion, predicates, lst):
     # add axioms
-    axioms = vampire_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates)
-    axioms.extend(ax)
+    axioms = vampire_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates, lst)
     #print(axioms)
     tptp_axioms = [convert_to_tptp(axiom) for axiom in axioms]
     
@@ -127,7 +125,7 @@ def prove_vampire(premises, conclusion, predicates, ax):
     # arg = arg.strip(".sem.xml")
     arg = ARGS.sem.strip(".sem.xml")
     # with open("tptp/" + arg + ".tptp", "w", encoding="utf-8") as z:
-    with open("." + arg + ".tptp", "w", encoding="utf-8") as z:
+    with open(arg + ".tptp", "w", encoding="utf-8") as z:
         for f in fols:
             z.write(f + "\n")
     tptp_script = ' '.join(fols)
@@ -159,22 +157,22 @@ def is_theorem_in_vampire(output_lines):
         #print(output_lines)
         return False
 
-def theorem_proving(prove_fun, premises, conclusion, predicates, ax):
-    res = prove_fun(premises, conclusion, predicates, ax)
+def theorem_proving(prove_fun, premises, conclusion, predicates, lst):
+    res = prove_fun(premises, conclusion, predicates, lst)
     if res:
         prediction = 'yes'
     else:
         negated_conclusion = NegatedExpression(conclusion)
-        res = prove_fun(premises, negated_conclusion, predicates, ax)
+        res = prove_fun(premises, negated_conclusion, predicates, lst)
         if res:
             prediction = 'no'
         else:
             prediction = 'unknown'
     return prediction
 
-def multi_theorem_proving(prove_fun, premises, conclusion, predicates, ax):
+def multi_theorem_proving(prove_fun, premises, conclusion, predicates, lst):
     def prove_positive(queue):
-        res = prove_fun(premises, conclusion, predicates, ax)
+        res = prove_fun(premises, conclusion, predicates, lst)
         is_prover = True
         queue.put((is_prover, res))
 
@@ -254,25 +252,16 @@ def main(args = None):
         print('dammy')
 
     else:
+        lst = []
         predicates = []
         for formula in formulas:
-                
+            if ('all' in formula) and ('->' in formula):
+                lst.append(formula)    
             preds = get_predicate(formula)
             for pred in preds:
                 if not pred in predicates:
                     predicates.append(pred)
-
-        lst = []
-        ax = []
-        for pred in predicates:
-            for f in Objs.keys():
-                if f == pred[0]:
-                    lst.append(pred[0] + '(' + pred[1][0] + ')')
-        if (lst != []) and (len(lst) == 2):
-            for pred in predicates:
-                if (('all ' + lst[0][-2] + '.(' + lst[0] + ' -> ' + lst[1] + ')') in formulas):
-                    axiom = lexpr('(all x. (' + lst[0][:-3] + '(x) <-> ' + lst[1][:-3] + '(x))) -> (_th(' + lst[0][:-3] + ') = _th(' + lst[1][:-3] + '))')
-                    ax.append(axiom)        
+        
         #print(predicates)
         
         if ARGS.prover == "prover9":
@@ -280,7 +269,7 @@ def main(args = None):
             conclusion = formulas[-1]
             premises = formulas[:-1]
             start = time.time()
-            prediction = theorem_proving(prove_prover9mace, premises, conclusion, predicates, ax)
+            prediction = theorem_proving(prove_prover9mace, premises, conclusion, predicates, lst)
             end = time.time() - start
             print('{0},{1:.4f}'.format(prediction, end))
 
@@ -290,7 +279,7 @@ def main(args = None):
             conclusion = formulas[-1]
             start = time.time()
             #prediction = multi_theorem_proving(prove_vampire, premises, conclusion, predicates)
-            prediction = theorem_proving(prove_vampire, premises, conclusion, predicates, ax)
+            prediction = theorem_proving(prove_vampire, premises, conclusion, predicates, lst)
             end = time.time() - start
             print('{0},{1:.4f}'.format(prediction, end))
         
