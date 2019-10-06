@@ -54,7 +54,7 @@ def prove(premises, conclusion):
         answer = prove_neg(premises, conclusion)
         return answer
 
-def prover9_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates):
+def prover9_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates, lst):
     axiom = []
     Fp = Fm = ''
 
