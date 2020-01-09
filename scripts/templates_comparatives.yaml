@@ -175,7 +175,7 @@
   surf: more
 
 - category: ((((S\NP)/(S/(S\NP)))\((S\NP)/NP))/N)/((S\NP)\D)
-  semantics: \E A N G Q z. exists d. (exists x. (N(x) & G(\P. P(x),z) & A(d,x)) & -Q(\y. (N(y) & A(d,y))))
+  semantics: \E A N G Q z. exists d. (exists x. (N(x) & G(\P. P(x),z) & A(d,x)) & Q(\y. (N(y) & -A(d,y))))
   surf: more2
 
 - category: ((((S\NP)/(S/NP))\((S\NP)/NP))/N)/((S\NP)\D)
