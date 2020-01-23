@@ -75,7 +75,7 @@ def prove_prover9mace(premises, conclusion, predicates, lst):
 def prove_vampire(premises, conclusion, predicates, lst):
     # add axioms
     axioms = vampire_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates, lst)
-    #print(axioms)
+    # print(axioms)
     tptp_axioms = [convert_to_tptp(axiom) for axiom in axioms]
     
     premises = tptp_axioms + premises

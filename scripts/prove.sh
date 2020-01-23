@@ -14,7 +14,7 @@ semantics="./scripts/templates_comparatives.yaml"
 file=${ccg##*/}
 jigg=${file/.ccg/.xml}
 
-res_dir="./results"
+res_dir="results"
 mkdir -p $res_dir
 
 python ./ccg2lambda/ccg2jiggxml.py -i $ccg > $res_dir/$jigg

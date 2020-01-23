@@ -125,12 +125,12 @@ def vampire_axioms(Fpos, Fneg, Verbs, Objs, Fex, predicates, lst):
     objlst = set(objlst)
     objlst = list(objlst)
 
-    if lst != []:
-        for i in range(len(objlst)):
-            for j in range(len(objlst)):
+    # if lst != []:
+    #     for i in range(len(objlst)):
+    #         for j in range(len(objlst)):
                 
-                ax = lexpr('(all x. (' + objlst[i] + '(x) <-> ' + objlst[j] + '(x))) -> (_th(' + objlst[i] + ') = _th(' + objlst[j] + '))')
-                axiom.extend([ax])
+    #             ax = lexpr('(all x. (' + objlst[i] + '(x) <-> ' + objlst[j] + '(x))) -> (_th(' + objlst[i] + ') = _th(' + objlst[j] + '))')
+    #             axiom.extend([ax])
             
 
     axiom = set(axiom)
