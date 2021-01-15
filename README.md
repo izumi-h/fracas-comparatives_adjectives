@@ -119,7 +119,8 @@ $ cat inferences/fra_comp_220.ccg
   month     = {September},
   year      = {2019},
   address   = {Hakodate, Japan},
-  pages     = {67--76}
+  publisher = {Waseda Institute for the Study of Language and Information},
+  pages     = {47--56}
 }
 ```
 
