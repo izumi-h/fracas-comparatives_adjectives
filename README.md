@@ -125,4 +125,4 @@ $ cat inferences/fra_comp_220.ccg
 ```
 
 ## Results
-You can see [the html files](https://drive.google.com/drive/folders/1F0iZEp9p4KWf28fYhrZ1WCC2shSCGe9O) as the results that maps CCG derivation trees to semantic representaions.
+You can see [the html files](https://drive.google.com/drive/folders/1DemLLTHXr_U3BGekWzEPueT7FwSaMCyg?usp=sharing) as the results that maps CCG derivation trees to semantic representaions.
